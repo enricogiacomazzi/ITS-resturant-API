@@ -11,8 +11,5 @@ const schema = {
 };
 
 export default async function(app) {
-    app.get('/', {schema}, async () => {
-        const busy = new Set(app.db.orders.filter(x => !x.completed).map(x => x.tableId));
-        return app.db.tables.filter(x => !busy.has(x.id));
-    });
+    app.get('/', {schema}, async () => app.db.tables);
 }
