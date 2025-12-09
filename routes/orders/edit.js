@@ -26,7 +26,7 @@ export default async function(app) {
         const {id} = res.params;
         const index = app.db.orders.findIndex(x => x.id === id);
         const order = app.db.orders[index];
-        order.dishes = app.aggregate([...order.dishes, ...res.body.dishes]);
+        order.dishes = app.aggregate(res.body.dishes);
         app.db.orders[index] = order;
         return order;
     });
